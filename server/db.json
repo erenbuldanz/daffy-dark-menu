@@ -1,0 +1,475 @@
+{
+  "categories": [
+    {
+      "id": "tatli",
+      "name": "Tatlılar",
+      "icon": "Cake"
+    },
+    {
+      "id": "icecek",
+      "name": "İçecekler",
+      "icon": "GlassWater"
+    },
+    {
+      "id": "kahve",
+      "name": "Sıcak Kahveler",
+      "icon": "Coffee"
+    },
+    {
+      "id": "soguk-kahve",
+      "name": "Soğuk Kahveler",
+      "icon": "Snowflake"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": "1",
+      "name": "Antep Fıstıklı Sebastian",
+      "description": "Antep fıstığı ile zenginleştirilmiş özel Sebastian tatlısı",
+      "price": 360,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "2",
+      "name": "Kavanozda Belçika Çikolatası (Küçük)",
+      "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
+      "price": 290,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop",
+      "options": [
+        {
+          "name": "Meyve Tercihi",
+          "choices": [
+            "Muz",
+            "Çilek"
+          ],
+          "maxSelect": 2
+        },
+        {
+          "name": "Çikolata Tercihi",
+          "choices": [
+            "Bitter Çikolata",
+            "Sütlü Çikolata",
+            "Beyaz Çikolata"
+          ],
+          "maxSelect": 2
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Kavanozda Belçika Çikolatası (Orta)",
+      "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
+      "price": 320,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476d?w=400&h=300&fit=crop",
+      "options": [
+        {
+          "name": "Meyve Tercihi",
+          "choices": [
+            "Muz",
+            "Çilek"
+          ],
+          "maxSelect": 2
+        },
+        {
+          "name": "Çikolata Tercihi",
+          "choices": [
+            "Bitter Çikolata",
+            "Sütlü Çikolata",
+            "Beyaz Çikolata"
+          ],
+          "maxSelect": 2
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Kavanozda Belçika Çikolatası (Büyük)",
+      "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
+      "price": 350,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=300&fit=crop",
+      "options": [
+        {
+          "name": "Meyve Tercihi",
+          "choices": [
+            "Muz",
+            "Çilek"
+          ],
+          "maxSelect": 2
+        },
+        {
+          "name": "Çikolata Tercihi",
+          "choices": [
+            "Bitter Çikolata",
+            "Sütlü Çikolata",
+            "Beyaz Çikolata"
+          ],
+          "maxSelect": 2
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Waffle Cup",
+      "description": "Özel waffle hamurunda servis edilen enfes tatlı",
+      "price": 440,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "6",
+      "name": "Bunny",
+      "description": "Çilek, muz, krep kırığı, özel krema, Belçika çikolatası",
+      "price": 320,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "7",
+      "name": "Daffy Cup",
+      "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
+      "price": 320,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "8",
+      "name": "San Sebastian",
+      "description": "Belçika çikolatası ile hazırlanan klasik San Sebastian",
+      "price": 320,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "9",
+      "name": "Brownie",
+      "description": "Krep kırığı, Belçika çikolatası",
+      "price": 310,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "10",
+      "name": "Kruvasan",
+      "description": "Çilek, muz, özel krema, krep kırığı, Belçika çikolatası",
+      "price": 320,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "11",
+      "name": "Daffytrol",
+      "description": "Özel Daffy Dark tarifi",
+      "price": 310,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "12",
+      "name": "Pera",
+      "description": "Özel Pera tatlısı",
+      "price": 310,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "13",
+      "name": "Marsel",
+      "description": "Özel Marsel tatlısı",
+      "price": 310,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "14",
+      "name": "Yaban Mersinli Pasta",
+      "description": "Taze yaban mersini ile hazırlanan pasta",
+      "price": 275,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "15",
+      "name": "Waffle (Daffle)",
+      "description": "Daffy Dark özel waffle",
+      "price": 330,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "16",
+      "name": "Böğürtlen / Frambuaz",
+      "description": "Taze böğürtlen veya frambuaz",
+      "price": 90,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "17",
+      "name": "Spoonful",
+      "description": "Kaşık tatlısı",
+      "price": 310,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "18",
+      "name": "Dondurma",
+      "description": "Ev yapımı dondurma",
+      "price": 90,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "19",
+      "name": "Lotuslu Pasta",
+      "description": "Lotus bisküvisi ile hazırlanan pasta",
+      "price": 270,
+      "category": "tatli",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "20",
+      "name": "Su (500 ml)",
+      "description": "Doğal kaynak suyu",
+      "price": 35,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "21",
+      "name": "Sade Soda (200 ml)",
+      "description": "Ferahlatıcı soda",
+      "price": 55,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "22",
+      "name": "Meyveli Soda (200 ml)",
+      "description": "Meyve aromalı soda",
+      "price": 70,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "23",
+      "name": "Ev Yapımı Limonata (240 ml)",
+      "description": "Taze limonlardan hazırlanan ev yapımı limonata",
+      "price": 200,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "24",
+      "name": "Link (200 ml)",
+      "description": "Link meşrubat",
+      "price": 45,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "25",
+      "name": "Capri Sun (200 ml)",
+      "description": "Capri Sun meyve suyu",
+      "price": 55,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "26",
+      "name": "Coca Cola (200 ml)",
+      "description": "Coca Cola",
+      "price": 85,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "27",
+      "name": "Sıcak Çikolata",
+      "description": "Belçika çikolatası ile hazırlanan sıcak çikolata",
+      "price": 170,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "28",
+      "name": "Fincan Çay",
+      "description": "Geleneksel Türk çayı",
+      "price": 50,
+      "category": "icecek",
+      "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "29",
+      "name": "Filtre Kahve",
+      "description": "Taze çekilmiş filtre kahve",
+      "price": 135,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1497515114889-1c6a5e7cda9d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "30",
+      "name": "Türk Kahvesi",
+      "description": "Geleneksel Türk kahvesi",
+      "price": 100,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "31",
+      "name": "Americano",
+      "description": "Espresso ve sıcak su",
+      "price": 140,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1551030173-122aabc4489c?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "32",
+      "name": "Chai Tea Latte",
+      "description": "Baharatlı çay ve süt",
+      "price": 140,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "33",
+      "name": "Duble Espresso",
+      "description": "Çift shot espresso",
+      "price": 125,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "34",
+      "name": "Latte",
+      "description": "Espresso ve buharla ısıtılmış süt",
+      "price": 140,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1570968992193-fd6dcba2aacc?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "35",
+      "name": "Cappuccino",
+      "description": "Espresso, buharla ısıtılmış süt ve köpük",
+      "price": 140,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "36",
+      "name": "Flat White",
+      "description": "Espresso ve mikro köpüklü süt",
+      "price": 150,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "37",
+      "name": "Caramel Latte",
+      "description": "Espresso, süt ve karamel şurubu",
+      "price": 150,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "38",
+      "name": "Mocha",
+      "description": "Espresso, çikolata ve süt",
+      "price": 150,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "39",
+      "name": "White Mocha",
+      "description": "Espresso, beyaz çikolata ve süt",
+      "price": 150,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "40",
+      "name": "Single Espresso",
+      "description": "Tek shot espresso",
+      "price": 100,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "41",
+      "name": "Duble Türk Kahvesi",
+      "description": "Çift kişilik Türk kahvesi",
+      "price": 180,
+      "category": "kahve",
+      "image": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "42",
+      "name": "Soğuk Americano",
+      "description": "Espresso ve soğuk su",
+      "price": 140,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "43",
+      "name": "Soğuk Latte",
+      "description": "Espresso ve soğuk süt",
+      "price": 150,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "44",
+      "name": "Soğuk Caramel Latte",
+      "description": "Espresso, soğuk süt ve karamel",
+      "price": 160,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "45",
+      "name": "Soğuk Mocha",
+      "description": "Espresso, çikolata ve soğuk süt",
+      "price": 160,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "46",
+      "name": "Soğuk White Mocha",
+      "description": "Espresso, beyaz çikolata ve soğuk süt",
+      "price": 160,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "47",
+      "name": "Cold Brew",
+      "description": "Soğuk demleme kahve",
+      "price": 170,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "48",
+      "name": "Frappe",
+      "description": "Buzlu ve köpüklü kahve",
+      "price": 150,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "49",
+      "name": "Iced Chai Tea Latte",
+      "description": "Soğuk chai tea ve süt",
+      "price": 150,
+      "category": "soguk-kahve",
+      "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&h=300&fit=crop"
+    }
+  ]
+}

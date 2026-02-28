@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(lsof:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:www.daffydark.com.tr)",
+      "Bash(wc:*)",
+      "WebFetch(domain:daffydark.com.tr)",
+      "Bash(find:*)",
+      "Bash(xargs kill:*)",
+      "Bash(npx vite:*)",
+      "Bash(npx create-next-app:*)"
+    ]
+  }
+}
