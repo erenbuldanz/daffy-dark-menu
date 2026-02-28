@@ -70,7 +70,7 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-[#faf6f0] text-[#1e0f00]">
+    <div className="min-h-screen bg-gradient-to-b from-[#fffcf7] via-[#fbf4e9] to-[#f6ecdd] text-[#1e0f00]">
       <Header />
       {!settings.isOpen && (
         <div className="bg-amber-100 border-b border-amber-200 text-amber-900">

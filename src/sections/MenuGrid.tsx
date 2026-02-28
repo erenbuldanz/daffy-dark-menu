@@ -7,6 +7,35 @@ interface MenuGridProps {
   onProductClick: (item: MenuItem) => void;
 }
 
+function ProductCard({ item, onProductClick, index }: { item: MenuItem; onProductClick: (item: MenuItem) => void; index: number }) {
+  return (
+    <div onClick={() => onProductClick(item)} className="group cursor-pointer animate-fade-in-up" style={{ animationDelay: `${index * 55}ms` }}>
+      <div className="relative rounded-3xl overflow-hidden bg-white border border-[#ecdcca] shadow-[0_10px_24px_rgba(30,15,0,0.08)] hover:shadow-[0_14px_32px_rgba(30,15,0,0.14)] transition-all duration-300">
+        <div className="relative h-36 overflow-hidden">
+          <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
+        </div>
+        <div className="px-3 pt-3 pb-4 bg-gradient-to-b from-[#fffdfa] to-[#fdf6ec]">
+          <h3 className="text-[#2f1b0e] font-semibold text-sm line-clamp-1 mb-1">{item.name}</h3>
+          <p className="text-[#866648] text-xs line-clamp-1 mb-2">{item.description}</p>
+          <div className="flex items-center justify-between">
+            <span className="text-[#b87333] font-bold text-sm">{item.price.toLocaleString('tr-TR')} ₺</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onProductClick(item);
+              }}
+              className="w-8 h-8 bg-gradient-to-br from-[#c2874a] to-[#a96a2e] rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-200"
+            >
+              <Plus className="w-4 h-4 text-white" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function MenuGrid({ categories, itemsByCategory, onProductClick }: MenuGridProps) {
   return (
     <div className="px-5 py-3">
@@ -17,57 +46,10 @@ export function MenuGrid({ categories, itemsByCategory, onProductClick }: MenuGr
 
           return (
             <section key={category.id} id={`category-${category.id}`}>
-              {/* Kategori Başlığı */}
-              <h3 className="text-lg font-bold text-[#3d2714] mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
-                {category.name}
-              </h3>
-
-              {/* Ürün Grid */}
+              <h3 className="text-xl font-bold text-[#2f1b0e] mb-3">{category.name}</h3>
               <div className="grid grid-cols-2 gap-4">
                 {items.map((item, index) => (
-                  <div
-                    key={item.id}
-                    onClick={() => onProductClick(item)}
-                    className="group cursor-pointer animate-fade-in-up"
-                    style={{ animationDelay: `${index * 60}ms` }}
-                  >
-                    <div className="relative rounded-3xl overflow-hidden card-dark-gradient shadow-lg hover:shadow-xl transition-shadow duration-300">
-                      {/* Ürün Görseli */}
-                      <div className="relative h-36 overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1e1408] via-transparent to-transparent" />
-                      </div>
-
-                      {/* İçerik */}
-                      <div className="px-3 pt-3 pb-4">
-                        <h3 className="text-white font-semibold text-sm line-clamp-1 mb-1">
-                          {item.name}
-                        </h3>
-                        <p className="text-[#9a8672] text-xs line-clamp-1 mb-2">
-                          {item.description}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-white font-bold text-sm">
-                            {item.price.toLocaleString('tr-TR')} ₺
-                          </span>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onProductClick(item);
-                            }}
-                            className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-200"
-                          >
-                            <Plus className="w-4 h-4 text-[#3d2714]" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard key={item.id} item={item} onProductClick={onProductClick} index={index} />
                 ))}
               </div>
             </section>
@@ -78,7 +60,6 @@ export function MenuGrid({ categories, itemsByCategory, onProductClick }: MenuGr
   );
 }
 
-/* Arama sonuçları için ayrı grid */
 interface SearchGridProps {
   items: MenuItem[];
   onProductClick: (item: MenuItem) => void;
@@ -102,46 +83,7 @@ export function SearchGrid({ items, onProductClick }: SearchGridProps) {
       <div className="max-w-lg mx-auto">
         <div className="grid grid-cols-2 gap-4">
           {items.map((item, index) => (
-            <div
-              key={item.id}
-              onClick={() => onProductClick(item)}
-              className="group cursor-pointer animate-fade-in-up"
-              style={{ animationDelay: `${index * 60}ms` }}
-            >
-              <div className="relative rounded-3xl overflow-hidden card-dark-gradient shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="relative h-36 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e1408] via-transparent to-transparent" />
-                </div>
-                <div className="px-3 pt-3 pb-4">
-                  <h3 className="text-white font-semibold text-sm line-clamp-1 mb-1">
-                    {item.name}
-                  </h3>
-                  <p className="text-[#9a8672] text-xs line-clamp-1 mb-2">
-                    {item.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white font-bold text-sm">
-                      {item.price.toLocaleString('tr-TR')} ₺
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onProductClick(item);
-                      }}
-                      className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-200"
-                    >
-                      <Plus className="w-4 h-4 text-[#3d2714]" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={item.id} item={item} onProductClick={onProductClick} index={index} />
           ))}
         </div>
       </div>

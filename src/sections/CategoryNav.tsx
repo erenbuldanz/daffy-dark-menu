@@ -26,7 +26,7 @@ export function CategoryNav({ categories, activeCategory, onCategoryChange }: Ca
   };
 
   return (
-    <div className="sticky top-[72px] z-30 bg-[#faf6f0]/95 backdrop-blur-md border-b border-[#e8d5c0]/50">
+    <div className="sticky top-[72px] z-30 bg-[#fdf9f3]/90 backdrop-blur-md border-b border-[#eadcca]">
       <div className="px-5 pt-2 pb-2">
         <div className="max-w-lg mx-auto">
           <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-hide">
@@ -38,13 +38,11 @@ export function CategoryNav({ categories, activeCategory, onCategoryChange }: Ca
                 <button
                   key={category.id}
                   onClick={() => handleClick(category.id)}
-                  className={`
-                    flex items-center gap-2 px-4 py-2.5 rounded-2xl whitespace-nowrap transition-all duration-300 text-sm font-medium
-                    ${isActive
-                      ? 'bg-[#b87333] text-white shadow-lg shadow-[#b87333]/25'
-                      : 'bg-[#f5ebe0] text-[#7a5c3e] hover:bg-[#e8d5c0]'
-                    }
-                  `}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl whitespace-nowrap transition-all duration-300 text-sm font-medium ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[#c2874a] to-[#a96a2e] text-white shadow-lg shadow-[#b87333]/25'
+                      : 'bg-white text-[#6f5236] border border-[#ecdcca] hover:bg-[#fbf1e3]'
+                  }`}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{category.name}</span>
