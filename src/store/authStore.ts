@@ -1,5 +1,5 @@
 const AUTH_KEY = 'daffy_admin_auth';
-const ADMIN_PASSWORD = 'daffy2025';
+const ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || 'daffy2025';
 
 export function isAuthenticated(): boolean {
   try {

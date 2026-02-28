@@ -7,3 +7,6 @@ dist/
 .env.*
 zebre-tente/
 .claude/
+backups/
+
+!.env.example

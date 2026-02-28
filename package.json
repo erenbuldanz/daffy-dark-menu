@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "dev:api": "node server/index.mjs",
     "dev:full": "concurrently -k \"npm:dev:api\" \"npm:dev\"",
-    "start:api": "node server/index.mjs"
+    "start:api": "node server/index.mjs",
+    "backup:db": "node scripts/backup-db.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

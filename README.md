@@ -17,6 +17,17 @@ Daffy Dark için geliştirilen QR menü + admin panel projesi.
 ## Kurulum
 ```bash
 npm install
+cp .env.example .env
+```
+
+## Hızlı Başlatma (önerilen)
+```bash
+./start.sh
+```
+
+## Durdurma
+```bash
+./stop.sh
 ```
 
 ## Geliştirme
@@ -30,17 +41,23 @@ npm run dev
 npm run dev:api
 ```
 
-### Full-stack (önerilen)
+### Full-stack
 ```bash
 npm run dev:full
 ```
 
 - Frontend: `http://localhost:5173`
+- Admin: `http://localhost:5173/#/admin/login`
 - API: `http://localhost:4000/api`
 
 ## Build
 ```bash
 npm run build
+```
+
+## Lint
+```bash
+npm run lint
 ```
 
 ## API uçları
@@ -50,17 +67,30 @@ npm run build
 - `PUT /api/categories`
 - `PUT /api/menu-items`
 
-## Ortam değişkeni
-Frontend farklı API adresine bağlanacaksa:
+## Yedekleme / Export
+Menü verisinin (`server/db.json`) zaman damgalı bir yedeğini alır:
+
+```bash
+npm run backup:db
+```
+
+Yedek dosyaları `backups/` klasörüne oluşturulur.
+
+## Ortam değişkenleri
+`.env.example` üzerinden yönetilir:
 
 ```bash
 VITE_API_URL=http://localhost:4000/api
+VITE_ADMIN_PASSWORD=change_me
+PORT=4000
 ```
+
+> Not: Frontend tarafındaki `VITE_*` değişkenleri client bundle içine girer; gerçek gizli anahtarları burada tutmayın.
 
 ## Not
 Bu sürüm lokal geliştirme odaklıdır. Canlıya çıkmadan önce:
 - JSON yerine veritabanı
 - Auth hardening
 - Rate limit / logging
-- Yedekleme
+- Düzenli yedekleme
 adımları önerilir.
