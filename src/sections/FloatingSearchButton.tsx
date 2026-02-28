@@ -1,21 +1,24 @@
-import { Search } from 'lucide-react';
+import { Phone } from 'lucide-react';
+import { useSyncExternalStore } from 'react';
+import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
-interface FloatingSearchButtonProps {
+interface FloatingCallButtonProps {
   hasCartBanner: boolean;
-  onClick: () => void;
 }
 
-export function FloatingSearchButton({ hasCartBanner, onClick }: FloatingSearchButtonProps) {
+export function FloatingCallButton({ hasCartBanner }: FloatingCallButtonProps) {
+  const settings = useSyncExternalStore(subscribeSettings, getSettings);
+
   return (
-    <button
-      onClick={onClick}
-      aria-label="Aramayı aç"
-      className={`fixed right-5 z-50 w-14 h-14 rounded-2xl bg-[#3d2714] hover:bg-[#2a1a0a] text-white shadow-xl transition-all active:scale-95 ${
+    <a
+      href={`tel:${settings.phoneNumber}`}
+      aria-label="Telefonla ara"
+      className={`fixed right-5 z-50 w-14 h-14 rounded-2xl bg-[#3d2714] hover:bg-[#2a1a0a] text-white shadow-xl transition-all active:scale-95 flex items-center justify-center ${
         hasCartBanner ? 'bottom-40' : 'bottom-24'
       }`}
     >
-      <span className="sr-only">Arama</span>
-      <Search className="w-6 h-6 mx-auto" />
-    </button>
+      <span className="sr-only">Ara</span>
+      <Phone className="w-6 h-6" />
+    </a>
   );
 }

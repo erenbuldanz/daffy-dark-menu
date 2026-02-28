@@ -10,7 +10,7 @@ import { SearchBar } from '@/sections/SearchBar';
 import { FloatingCartButton } from '@/sections/FloatingOrderButton';
 import { FeaturedProducts } from '@/sections/FeaturedProducts';
 import { CartDrawer } from '@/sections/CartDrawer';
-import { FloatingSearchButton } from '@/sections/FloatingSearchButton';
+import { FloatingCallButton } from '@/sections/FloatingSearchButton';
 import { fetchMenuData } from '@/lib/api';
 import { getSettings, subscribeSettings } from '@/store/settingsStore';
 import { getCartCount, subscribeCart } from '@/store/cartStore';
@@ -68,16 +68,6 @@ function App() {
   }, [handleScroll]);
 
 
-  const handleFloatingSearch = () => {
-    const anchor = document.getElementById('search-anchor');
-    const input = document.getElementById('menu-search-input') as HTMLInputElement | null;
-
-    if (anchor) {
-      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    setTimeout(() => input?.focus(), 250);
-  };
 
   return (
     <div className="min-h-screen bg-[#faf6f0] text-[#1e0f00]">
@@ -106,7 +96,7 @@ function App() {
       </main>
       <Footer onCartOpen={() => setCartOpen(true)} />
       <FloatingCartButton onCartOpen={() => setCartOpen(true)} />
-      <FloatingSearchButton hasCartBanner={cartCount > 0} onClick={handleFloatingSearch} />
+      <FloatingCallButton hasCartBanner={cartCount > 0} />
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
       <ProductModal product={selectedProduct} isOpen={!!selectedProduct} onClose={() => setSelectedProduct(null)} onCartOpen={() => setCartOpen(true)} />
     </div>
