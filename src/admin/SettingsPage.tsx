@@ -16,6 +16,7 @@ export function SettingsPage() {
   const [restaurantAddress, setRestaurantAddress] = useState(current.restaurantAddress);
   const [workingHours, setWorkingHours] = useState(current.workingHours);
   const [instagramUrl, setInstagramUrl] = useState(current.instagramUrl);
+  const [logoUrl, setLogoUrl] = useState(current.logoUrl);
   const [orderMessageTemplate, setOrderMessageTemplate] = useState(current.orderMessageTemplate);
 
   const [settingsError, setSettingsError] = useState('');
@@ -42,6 +43,7 @@ export function SettingsPage() {
       restaurantAddress,
       workingHours,
       instagramUrl,
+      logoUrl,
       orderMessageTemplate,
     });
 
@@ -161,6 +163,11 @@ export function SettingsPage() {
               <label className="block text-sm text-[#d4c4a8] mb-1.5">Instagram Linki</label>
               <input value={instagramUrl} onChange={(e) => setInstagramUrl(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://instagram.com/..." />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm text-[#d4c4a8] mb-1.5">Logo URL</label>
+            <input value={logoUrl} onChange={(e) => setLogoUrl(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://.../logo.jpg" />
           </div>
 
           <div>

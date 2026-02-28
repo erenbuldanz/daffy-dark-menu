@@ -2,6 +2,8 @@ import { useSyncExternalStore } from 'react';
 import { Instagram } from 'lucide-react';
 import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
+const DEFAULT_LOGO = 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=100&h=100&fit=crop';
+
 export function Header() {
   const settings = useSyncExternalStore(subscribeSettings, getSettings);
 
@@ -12,8 +14,9 @@ export function Header() {
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-[#b87333]/30 shadow-sm flex-shrink-0">
               <img
-                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=100&h=100&fit=crop"
+                src={settings.logoUrl || DEFAULT_LOGO}
                 alt={settings.restaurantName}
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = DEFAULT_LOGO; }}
                 className="w-full h-full object-cover"
               />
             </div>
