@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$PROJECT_DIR"
+
+echo "🛑 Daffy Dark Menu servisleri durduruluyor..."
+
+stopped_any=false
+
+stop_port() {
+  local port="$1"
+  local pids
+  pids="$(lsof -ti :"$port" || true)"
+
+  if [ -n "$pids" ]; then
+    echo "• Port $port için süreçler sonlandırılıyor: $pids"
+    kill $pids || true
+    sleep 1
+
+    # Hâlâ kapanmadıysa zorla kapat
+    pids="$(lsof -ti :"$port" || true)"
+    if [ -n "$pids" ]; then
+      echo "  ↳ Zorla kapatılıyor: $pids"
+      kill -9 $pids || true
+    fi
+
+    stopped_any=true
+  else
+    echo "• Port $port zaten boş"
+  fi
+}
+
+stop_port 5173
+stop_port 4000
+
+if [ "$stopped_any" = true ]; then
+  echo "✅ Durdurma tamamlandı"
+else
+  echo "ℹ️ Çalışan servis bulunamadı"
+fi
