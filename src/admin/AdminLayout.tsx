@@ -29,12 +29,12 @@ export function AdminLayout() {
     <>
       {/* Logo */}
       <div className="flex items-center gap-3 mb-8 px-1">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#f97316] to-[#ea580c] rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+        <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
           <Coffee className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="font-bold text-[#f5e6d3] text-sm">DAFFY DARK</h1>
-          <p className="text-[#8b6f47] text-xs">Yönetici Paneli</p>
+          <h1 className="font-bold text-slate-900 text-sm">DAFFY DARK</h1>
+          <p className="text-slate-500 text-xs">Yönetici Paneli</p>
         </div>
       </div>
 
@@ -49,8 +49,8 @@ export function AdminLayout() {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
-                  ? 'bg-gradient-to-r from-[#f97316] to-[#ea580c] text-white shadow-lg shadow-orange-500/20'
-                  : 'text-[#d4c4a8] hover:bg-[#8b6f47]/15 hover:text-[#f5e6d3]'
+                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/20'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
               }`
             }
           >
@@ -61,8 +61,8 @@ export function AdminLayout() {
       </nav>
 
       {/* Bottom Actions */}
-      <div className="border-t border-[#8b6f47]/20 pt-4 space-y-1">
-        <a href="/#/" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-[#d4c4a8] hover:bg-[#8b6f47]/15 hover:text-[#f5e6d3] transition-all">
+      <div className="border-t border-slate-200 pt-4 space-y-1">
+        <a href="/#/" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all">
           <Home className="w-4 h-4" />
           Menüye Dön
         </a>
@@ -75,19 +75,19 @@ export function AdminLayout() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#3d2914] to-[#2a1a0a]">
+    <div className="min-h-screen bg-[#f8fafc]">
       {/* Mobile Header */}
-      <div className="lg:hidden sticky top-0 z-50 bg-[#5d4037]/95 backdrop-blur-md border-b border-[#8b6f47]/30 px-4 py-3 flex items-center justify-between">
+      <div className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => setSidebarOpen(true)} className="text-[#f5e6d3]">
+          <button onClick={() => setSidebarOpen(true)} className="text-slate-900">
             <Menu className="w-6 h-6" />
           </button>
           <div className="flex items-center gap-2">
-            <Coffee className="w-5 h-5 text-[#f97316]" />
-            <span className="font-bold text-[#f5e6d3]">Yönetici</span>
+            <Coffee className="w-5 h-5 text-amber-600" />
+            <span className="font-bold text-slate-900">Yönetici</span>
           </div>
         </div>
-        <button onClick={handleLogout} className="text-[#8b6f47] hover:text-red-400 transition-colors">
+        <button onClick={handleLogout} className="text-slate-500 hover:text-red-400 transition-colors">
           <LogOut className="w-5 h-5" />
         </button>
       </div>
@@ -96,9 +96,9 @@ export function AdminLayout() {
       {sidebarOpen && (
         <div className="lg:hidden fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <div className="absolute left-0 top-0 bottom-0 w-64 bg-gradient-to-b from-[#5d4037] to-[#4a3328] border-r border-[#8b6f47]/20 p-4 flex flex-col animate-slide-in-left">
+          <div className="absolute left-0 top-0 bottom-0 w-64 bg-white border-r border-slate-200 p-4 flex flex-col animate-slide-in-left">
             <div className="flex items-center justify-end mb-2">
-              <button onClick={() => setSidebarOpen(false)} className="text-[#d4c4a8] hover:text-white">
+              <button onClick={() => setSidebarOpen(false)} className="text-slate-600 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -109,7 +109,7 @@ export function AdminLayout() {
 
       <div className="flex">
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-64 bg-gradient-to-b from-[#5d4037] to-[#4a3328] border-r border-[#8b6f47]/20 p-4">
+        <aside className="hidden lg:flex flex-col fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-slate-200 p-4">
           <SidebarContent />
         </aside>
 
