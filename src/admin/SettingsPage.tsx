@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { KeyRound, Save, Settings2 } from 'lucide-react';
+import { KeyRound, Save, Settings2, Store, CircleOff } from 'lucide-react';
 import { updateAdminPassword } from '@/store/authStore';
 import { getSettings, updateSettings } from '@/store/settingsStore';
+import { Switch } from '@/components/ui/switch';
 
 export function SettingsPage() {
   const current = getSettings();
@@ -107,10 +108,28 @@ export function SettingsPage() {
             </div>
           </div>
 
-          <label className="flex items-center gap-3 text-[#f5e6d3] bg-[#4a3328]/60 rounded-xl px-4 py-3">
-            <input type="checkbox" checked={isOpen} onChange={(e) => setIsOpen(e.target.checked)} />
-            <span>Çalışma Durumu: {isOpen ? 'Açık' : 'Kapalı'}</span>
-          </label>
+          <div className="rounded-2xl border border-[#8b6f47]/30 bg-[#4a3328]/60 p-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <div className={`mt-0.5 w-9 h-9 rounded-xl flex items-center justify-center ${isOpen ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}`}>
+                  {isOpen ? <Store className="w-5 h-5" /> : <CircleOff className="w-5 h-5" />}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-[#f5e6d3]">Çalışma Durumu</p>
+                  <p className="text-xs text-[#d4c4a8] mt-0.5">
+                    {isOpen ? 'İşletme açık, sipariş alınabiliyor.' : 'İşletme kapalı, sipariş butonları pasif.'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${isOpen ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}`}>
+                  {isOpen ? 'AÇIK' : 'KAPALI'}
+                </span>
+                <Switch checked={isOpen} onCheckedChange={setIsOpen} />
+              </div>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
