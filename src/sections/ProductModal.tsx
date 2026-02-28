@@ -102,7 +102,7 @@ export function ProductModal({ product, isOpen, onClose, onCartOpen }: ProductMo
                         onClick={() => handleOptionToggle(option.name, choice)}
                         className={`px-4 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 ${
                           isSelected
-                            ? 'bg-gradient-to-r from-[#c2874a] to-[#a96a2e] text-white shadow-md'
+                            ? 'premium-cta text-white shadow-md'
                             : 'bg-[#f8efe3] text-[#6e5135] hover:bg-[#f1e3d1]'
                         }`}
                       >
@@ -145,7 +145,7 @@ export function ProductModal({ product, isOpen, onClose, onCartOpen }: ProductMo
                 className={`flex-1 py-3.5 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg active:scale-[0.98] text-sm ${
                   added
                     ? 'bg-emerald-500 text-white shadow-emerald-500/25'
-                    : 'bg-gradient-to-r from-[#c2874a] to-[#9f632b] hover:from-[#b9783d] hover:to-[#8f5724] text-white shadow-[#9f632b]/30'
+                    : 'premium-cta text-white shadow-[#9f632b]/30'
                 }`}
               >
                 {added ? (

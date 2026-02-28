@@ -40,7 +40,7 @@ export function CategoryNav({ categories, activeCategory, onCategoryChange }: Ca
                   onClick={() => handleClick(category.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl whitespace-nowrap transition-all duration-300 text-sm font-semibold tracking-[0.01em] ${
                     isActive
-                      ? 'bg-gradient-to-r from-[#c2874a] to-[#a96a2e] text-white shadow-lg shadow-[#b87333]/25'
+                      ? 'premium-cta text-white shadow-lg shadow-[#b87333]/25'
                       : 'bg-white text-[#6f5236] border border-[#ecdcca] hover:bg-[#fbf1e3]'
                   }`}
                 >
