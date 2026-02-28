@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+LSOF_BIN="$(command -v lsof || true)"
+if [ -z "$LSOF_BIN" ] && [ -x /usr/sbin/lsof ]; then
+  LSOF_BIN="/usr/sbin/lsof"
+fi
+
 PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$PROJECT_DIR"
 
@@ -15,12 +20,12 @@ fi
 api_busy=false
 web_busy=false
 
-if lsof -ti :4000 >/dev/null 2>&1; then
+if "$LSOF_BIN" -ti :4000 >/dev/null 2>&1; then
   api_busy=true
   echo "⚠️ 4000 portu kullanımda (API zaten çalışıyor olabilir)."
 fi
 
-if lsof -ti :5173 >/dev/null 2>&1; then
+if "$LSOF_BIN" -ti :5173 >/dev/null 2>&1; then
   web_busy=true
   echo "⚠️ 5173 portu kullanımda (Frontend zaten çalışıyor olabilir)."
 fi

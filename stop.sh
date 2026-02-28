@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+LSOF_BIN="$(command -v lsof || true)"
+if [ -z "$LSOF_BIN" ] && [ -x /usr/sbin/lsof ]; then
+  LSOF_BIN="/usr/sbin/lsof"
+fi
+
 PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$PROJECT_DIR"
 
@@ -11,7 +16,7 @@ stopped_any=false
 stop_port() {
   local port="$1"
   local pids
-  pids="$(lsof -ti :"$port" || true)"
+  pids="$("$LSOF_BIN" -ti :"$port" || true)"
 
   if [ -n "$pids" ]; then
     echo "• Port $port için süreçler sonlandırılıyor: $pids"
@@ -19,7 +24,7 @@ stop_port() {
     sleep 1
 
     # Hâlâ kapanmadıysa zorla kapat
-    pids="$(lsof -ti :"$port" || true)"
+    pids="$("$LSOF_BIN" -ti :"$port" || true)"
     if [ -n "$pids" ]; then
       echo "  ↳ Zorla kapatılıyor: $pids"
       kill -9 $pids || true
