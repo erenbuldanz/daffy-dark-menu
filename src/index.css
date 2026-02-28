@@ -171,3 +171,25 @@ html {
 .tab-bar-shadow {
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.08);
 }
+
+
+@keyframes floatSoft {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.premium-float {
+  animation: floatSoft 4.5s ease-in-out infinite;
+}
+
+.premium-hover {
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s cubic-bezier(.22,1,.36,1);
+}
+.premium-hover:hover {
+  transform: translateY(-3px);
+}
+
+.text-premium-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}

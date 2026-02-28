@@ -10,14 +10,14 @@ interface MenuGridProps {
 function ProductCard({ item, onProductClick, index }: { item: MenuItem; onProductClick: (item: MenuItem) => void; index: number }) {
   return (
     <div onClick={() => onProductClick(item)} className="group cursor-pointer animate-fade-in-up" style={{ animationDelay: `${index * 55}ms` }}>
-      <div className="relative rounded-3xl overflow-hidden bg-white border border-[#ecdcca] shadow-[0_10px_24px_rgba(30,15,0,0.08)] hover:shadow-[0_14px_32px_rgba(30,15,0,0.14)] transition-all duration-300">
+      <div className="relative rounded-3xl overflow-hidden bg-white border border-[#ecdcca] shadow-[0_10px_24px_rgba(30,15,0,0.08)] hover:shadow-[0_14px_32px_rgba(30,15,0,0.14)] transition-all duration-300 premium-hover">
         <div className="relative h-36 overflow-hidden">
           <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
         </div>
         <div className="px-3 pt-3 pb-4 bg-gradient-to-b from-[#fffdfa] to-[#fdf6ec]">
-          <h3 className="text-[#2f1b0e] font-semibold text-sm line-clamp-1 mb-1">{item.name}</h3>
-          <p className="text-[#866648] text-xs line-clamp-1 mb-2">{item.description}</p>
+          <h3 className="text-[#2c190c] font-semibold text-[15px] line-clamp-1 mb-1">{item.name}</h3>
+          <p className="text-[#7d5f43] text-[12px] line-clamp-1 mb-2">{item.description}</p>
           <div className="flex items-center justify-between">
             <span className="text-[#b87333] font-bold text-sm">{item.price.toLocaleString('tr-TR')} ₺</span>
             <button
