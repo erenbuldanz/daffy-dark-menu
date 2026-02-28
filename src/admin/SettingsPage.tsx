@@ -173,13 +173,20 @@ export function SettingsPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-[#d4c4a8] mb-1.5">Unsplash Profil Linki</label>
+            <label className="block text-sm text-[#d4c4a8] mb-1.5">Unsplash Linki</label>
             <div className="flex gap-2">
-              <input value={unsplashUrl} onChange={(e) => setUnsplashUrl(e.target.value)} className="flex-1 bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://unsplash.com/@kullaniciadi" />
-              {unsplashUrl && (
-                <a href={unsplashUrl} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-xl bg-[#b87333] text-white text-sm font-medium whitespace-nowrap">Aç</a>
-              )}
+              <input value={unsplashUrl} onChange={(e) => setUnsplashUrl(e.target.value)} className="flex-1 bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://unsplash.com/collections/..." />
+              <a
+                href={unsplashUrl || '#'}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => { if (!unsplashUrl) e.preventDefault(); }}
+                className={`px-4 py-3 rounded-xl text-sm font-medium whitespace-nowrap transition-colors ${unsplashUrl ? 'bg-[#b87333] text-white hover:bg-[#a06828]' : 'bg-gray-500/40 text-gray-300 cursor-not-allowed'}`}
+              >
+                Unsplash'ı Aç
+              </a>
             </div>
+            <p className="text-xs text-[#c8b49a] mt-1">Müşteriniz bu linkten Unsplash'ı açıp fotoğrafı seçebilir; fotoğraf linkini alıp logo/ürün görseli alanlarına yapıştırabilir.</p>
           </div>
 
           <div>
