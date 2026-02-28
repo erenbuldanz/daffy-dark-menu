@@ -1,5 +1,11 @@
 const AUTH_KEY = 'daffy_admin_auth';
-const ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || 'daffy2025';
+const ADMIN_PASSWORD_KEY = 'daffy_admin_password';
+const DEFAULT_ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || 'daffy2025';
+
+function getCurrentAdminPassword(): string {
+  const customPassword = localStorage.getItem(ADMIN_PASSWORD_KEY);
+  return customPassword || DEFAULT_ADMIN_PASSWORD;
+}
 
 export function isAuthenticated(): boolean {
   try {
@@ -17,7 +23,7 @@ export function isAuthenticated(): boolean {
 }
 
 export function login(password: string): boolean {
-  if (password === ADMIN_PASSWORD) {
+  if (password === getCurrentAdminPassword()) {
     const session = {
       authenticated: true,
       expiry: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
@@ -26,6 +32,21 @@ export function login(password: string): boolean {
     return true;
   }
   return false;
+}
+
+export function updateAdminPassword(currentPassword: string, newPassword: string): { ok: boolean; error?: string } {
+  const normalizedNew = newPassword.trim();
+
+  if (currentPassword !== getCurrentAdminPassword()) {
+    return { ok: false, error: 'Mevcut şifre yanlış.' };
+  }
+
+  if (normalizedNew.length < 6) {
+    return { ok: false, error: 'Yeni şifre en az 6 karakter olmalı.' };
+  }
+
+  localStorage.setItem(ADMIN_PASSWORD_KEY, normalizedNew);
+  return { ok: true };
 }
 
 export function logout() {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, NavLink, Outlet } from 'react-router-dom';
-import { Coffee, Package, Grid3X3, LogOut, Home, Menu, X, LayoutDashboard } from 'lucide-react';
+import { Coffee, Package, Grid3X3, LogOut, Home, Menu, X, LayoutDashboard, Settings } from 'lucide-react';
 import { isAuthenticated, logout } from '@/store/authStore';
 
 export function AdminLayout() {
@@ -22,6 +22,7 @@ export function AdminLayout() {
     { to: '/admin', icon: LayoutDashboard, label: 'Gösterge Paneli', end: true },
     { to: '/admin/products', icon: Package, label: 'Ürünler', end: false },
     { to: '/admin/categories', icon: Grid3X3, label: 'Kategoriler', end: false },
+    { to: '/admin/settings', icon: Settings, label: 'Ayarlar', end: false },
   ];
 
   const SidebarContent = ({ onNavigate }: { onNavigate?: () => void }) => (

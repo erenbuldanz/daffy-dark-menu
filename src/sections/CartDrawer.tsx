@@ -16,6 +16,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cart = useSyncExternalStore(subscribeCart, getCart);
   const total = getCartTotal();
   const count = getCartCount();
+  const deliveryFee = 85;
+  const grandTotal = total + deliveryFee;
 
   const handleWhatsApp = () => {
     const msg = generateWhatsAppMessage();
@@ -83,11 +85,20 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         {cart.length > 0 && (
           <div className="flex-shrink-0 bg-white/90 backdrop-blur-md border-t border-[#e8d5c0] p-4 space-y-3">
             {/* Total */}
-            <div className="flex items-center justify-between bg-[#3d2714] rounded-2xl p-4">
-              <span className="text-[#c8b49a] font-medium">Toplam</span>
-              <span className="text-2xl font-bold text-[#b87333]">
-                {total.toLocaleString('tr-TR')} ₺
-              </span>
+            <div className="bg-[#3d2714] rounded-2xl p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-[#c8b49a] font-medium">Ara Toplam</span>
+                <span className="text-lg font-bold text-[#f5e6d3]">{total.toLocaleString('tr-TR')} ₺</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[#c8b49a] font-medium">Teslimat Ücreti</span>
+                <span className="text-lg font-bold text-[#f5e6d3]">{deliveryFee.toLocaleString('tr-TR')} ₺</span>
+              </div>
+              <div className="h-px bg-[#8b6f47]/40" />
+              <div className="flex items-center justify-between">
+                <span className="text-[#c8b49a] font-medium">Genel Toplam</span>
+                <span className="text-2xl font-bold text-[#b87333]">{grandTotal.toLocaleString('tr-TR')} ₺</span>
+              </div>
             </div>
 
             {/* WhatsApp Order */}

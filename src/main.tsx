@@ -8,6 +8,7 @@ import { AdminLayout } from './admin/AdminLayout.tsx'
 import { DashboardPage } from './admin/DashboardPage.tsx'
 import { ProductsPage } from './admin/ProductsPage.tsx'
 import { CategoriesPage } from './admin/CategoriesPage.tsx'
+import { SettingsPage } from './admin/SettingsPage.tsx'
 
 
 // Allow direct /admin URLs to work while using HashRouter
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route index element={<DashboardPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="categories" element={<CategoriesPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
     </HashRouter>
