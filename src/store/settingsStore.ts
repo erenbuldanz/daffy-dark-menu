@@ -1,17 +1,36 @@
 const SETTINGS_KEY = 'daffy_settings';
 
-type Settings = {
+export type Settings = {
   deliveryFee: number;
+  minOrderAmount: number;
+  isOpen: boolean;
+  whatsAppNumber: string;
+  phoneNumber: string;
+  restaurantName: string;
+  restaurantAddress: string;
+  orderMessageTemplate: string;
 };
 
 const DEFAULT_SETTINGS: Settings = {
   deliveryFee: 85,
+  minOrderAmount: 0,
+  isOpen: true,
+  whatsAppNumber: '905548273106',
+  phoneNumber: '05548273106',
+  restaurantName: 'Daffy Dark',
+  restaurantAddress: 'Adres bilgisi eklenmedi',
+  orderMessageTemplate:
+    'Merhaba {{restaurantName}}!\n\nSipariş Vermek İstiyorum:\n\n{{items}}\nAra Toplam: {{subtotal}} ₺\nTeslimat Ücreti: {{deliveryFee}} ₺\nGenel Toplam: {{grandTotal}} ₺',
 };
 
 const listeners = new Set<() => void>();
 
 function emit() {
   listeners.forEach((fn) => fn());
+}
+
+function normalizePhone(value: string): string {
+  return value.replace(/[^\d+]/g, '');
 }
 
 export function subscribeSettings(fn: () => void) {
@@ -33,19 +52,34 @@ export function getSettings(): Settings {
   }
 }
 
-export function getDeliveryFee(): number {
-  return getSettings().deliveryFee;
-}
+export function updateSettings(nextPartial: Partial<Settings>): { ok: boolean; error?: string } {
+  const current = getSettings();
+  const next: Settings = {
+    ...current,
+    ...nextPartial,
+  };
 
-export function setDeliveryFee(value: number): { ok: boolean; error?: string } {
-  if (!Number.isFinite(value) || value < 0) {
+  if (!Number.isFinite(next.deliveryFee) || next.deliveryFee < 0) {
     return { ok: false, error: 'Teslimat ücreti 0 veya daha büyük olmalı.' };
   }
 
-  const rounded = Math.round(value);
-  const next = { ...getSettings(), deliveryFee: rounded };
+  if (!Number.isFinite(next.minOrderAmount) || next.minOrderAmount < 0) {
+    return { ok: false, error: 'Minimum sipariş tutarı 0 veya daha büyük olmalı.' };
+  }
+
+  next.deliveryFee = Math.round(next.deliveryFee);
+  next.minOrderAmount = Math.round(next.minOrderAmount);
+  next.whatsAppNumber = normalizePhone(next.whatsAppNumber);
+  next.phoneNumber = normalizePhone(next.phoneNumber);
+  next.restaurantName = next.restaurantName.trim() || DEFAULT_SETTINGS.restaurantName;
+  next.restaurantAddress = next.restaurantAddress.trim() || DEFAULT_SETTINGS.restaurantAddress;
+  next.orderMessageTemplate = next.orderMessageTemplate.trim() || DEFAULT_SETTINGS.orderMessageTemplate;
+
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
   emit();
-
   return { ok: true };
+}
+
+export function getDeliveryFee(): number {
+  return getSettings().deliveryFee;
 }

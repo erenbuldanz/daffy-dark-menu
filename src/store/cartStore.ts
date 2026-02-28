@@ -1,5 +1,5 @@
 import type { CartItem, MenuItem } from '@/types/menu';
-import { getDeliveryFee } from '@/store/settingsStore';
+import { getSettings } from '@/store/settingsStore';
 
 const CART_KEY = 'daffy_cart';
 
@@ -99,28 +99,31 @@ export function generateWhatsAppMessage(): string {
   const cart = getCart();
   if (cart.length === 0) return '';
 
-  let msg = 'Merhaba Daffy Dark!\n\nSipariş Vermek İstiyorum:\n\n';
+  const settings = getSettings();
 
-  cart.forEach((item, i) => {
-    msg += `${i + 1}. ${item.product.name}\n`;
-    msg += `   Adet: ${item.quantity}\n`;
-    msg += `   Fiyat: ${(item.product.price * item.quantity).toLocaleString('tr-TR')} ₺\n`;
+  const itemsText = cart.map((item, i) => {
+    let line = `${i + 1}. ${item.product.name}\n`;
+    line += `   Adet: ${item.quantity}\n`;
+    line += `   Fiyat: ${(item.product.price * item.quantity).toLocaleString('tr-TR')} ₺\n`;
 
     const opts = Object.entries(item.selectedOptions).filter(([, v]) => v.length > 0);
     if (opts.length > 0) {
       opts.forEach(([name, choices]) => {
-        msg += `   ${name}: ${choices.join(', ')}\n`;
+        line += `   ${name}: ${choices.join(', ')}\n`;
       });
     }
-    msg += '\n';
-  });
+    return line;
+  }).join('\n');
 
-  const total = getCartTotal();
-  const deliveryFee = getDeliveryFee();
-  const grandTotal = total + deliveryFee;
-  msg += `Ara Toplam: ${total.toLocaleString('tr-TR')} ₺\n`;
-  msg += `Teslimat Ücreti: ${deliveryFee.toLocaleString('tr-TR')} ₺\n`;
-  msg += `Genel Toplam: ${grandTotal.toLocaleString('tr-TR')} ₺`;
+  const subtotal = getCartTotal();
+  const deliveryFee = settings.deliveryFee;
+  const grandTotal = subtotal + deliveryFee;
 
-  return msg;
+  return settings.orderMessageTemplate
+    .replaceAll('{{restaurantName}}', settings.restaurantName)
+    .replaceAll('{{items}}', itemsText)
+    .replaceAll('{{subtotal}}', subtotal.toLocaleString('tr-TR'))
+    .replaceAll('{{deliveryFee}}', deliveryFee.toLocaleString('tr-TR'))
+    .replaceAll('{{grandTotal}}', grandTotal.toLocaleString('tr-TR'))
+    .replaceAll('{{minOrderAmount}}', settings.minOrderAmount.toLocaleString('tr-TR'));
 }

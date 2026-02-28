@@ -1,12 +1,12 @@
 import { useSyncExternalStore } from 'react';
-import { X, Minus, Plus, Trash2, ShoppingBag, Phone, MessageCircle } from 'lucide-react';
+import { X, Minus, Plus, Trash2, ShoppingBag, Phone, MessageCircle, AlertCircle } from 'lucide-react';
 import {
   getCart, getCartTotal, getCartCount,
   updateCartItemQuantity, removeFromCart, clearCart,
   generateWhatsAppMessage, subscribeCart
 } from '@/store/cartStore';
 import type { CartItem } from '@/types/menu';
-import { getDeliveryFee, subscribeSettings } from '@/store/settingsStore';
+import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -17,24 +17,27 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cart = useSyncExternalStore(subscribeCart, getCart);
   const total = getCartTotal();
   const count = getCartCount();
-  const deliveryFee = useSyncExternalStore(subscribeSettings, getDeliveryFee);
+  const settings = useSyncExternalStore(subscribeSettings, getSettings);
+
+  const deliveryFee = settings.deliveryFee;
   const grandTotal = total + deliveryFee;
+  const meetsMinOrder = total >= settings.minOrderAmount;
+  const canOrder = settings.isOpen && meetsMinOrder;
 
   const handleWhatsApp = () => {
+    if (!canOrder) return;
     const msg = generateWhatsAppMessage();
-    window.open(`https://wa.me/905548273106?text=${encodeURIComponent(msg)}`, '_blank');
+    const number = settings.whatsAppNumber.replace(/\D/g, '');
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[60]">
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Drawer */}
       <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[#faf6f0] shadow-2xl flex flex-col animate-slide-in-right">
-        {/* Header */}
         <div className="bg-[#3d2714] px-5 py-4 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-[#b87333] rounded-xl flex items-center justify-center">
@@ -50,7 +53,6 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </button>
         </div>
 
-        {/* Cart Items */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center py-12">
@@ -82,10 +84,22 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           )}
         </div>
 
-        {/* Footer - Order Actions */}
         {cart.length > 0 && (
           <div className="flex-shrink-0 bg-white/90 backdrop-blur-md border-t border-[#e8d5c0] p-4 space-y-3">
-            {/* Total */}
+            {!settings.isOpen && (
+              <div className="flex items-start gap-2 bg-amber-100 text-amber-900 rounded-xl p-3 text-sm">
+                <AlertCircle className="w-4 h-4 mt-0.5" />
+                Şu anda sipariş alımı kapalı.
+              </div>
+            )}
+
+            {settings.minOrderAmount > 0 && !meetsMinOrder && (
+              <div className="flex items-start gap-2 bg-amber-100 text-amber-900 rounded-xl p-3 text-sm">
+                <AlertCircle className="w-4 h-4 mt-0.5" />
+                Minimum sipariş tutarı {settings.minOrderAmount.toLocaleString('tr-TR')} ₺. Kalan tutar: {(settings.minOrderAmount - total).toLocaleString('tr-TR')} ₺
+              </div>
+            )}
+
             <div className="bg-[#3d2714] rounded-2xl p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-[#c8b49a] font-medium">Ara Toplam</span>
@@ -102,19 +116,25 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               </div>
             </div>
 
-            {/* WhatsApp Order */}
             <button
               onClick={handleWhatsApp}
-              className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-green-500/20 active:scale-[0.98]"
+              disabled={!canOrder}
+              className="w-full bg-[#25D366] hover:bg-[#128C7E] disabled:bg-gray-400 disabled:cursor-not-allowed text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-green-500/20 active:scale-[0.98]"
             >
               <MessageCircle className="w-5 h-5" />
               WhatsApp ile Sipariş Ver
             </button>
 
-            {/* Phone Order */}
             <a
-              href="tel:05548273106"
-              className="w-full bg-[#b87333] hover:bg-[#a06828] text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-[#b87333]/20 active:scale-[0.98]"
+              href={canOrder ? `tel:${settings.phoneNumber}` : undefined}
+              onClick={(e) => {
+                if (!canOrder) e.preventDefault();
+              }}
+              className={`w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 ${
+                canOrder
+                  ? 'bg-[#b87333] hover:bg-[#a06828] text-white shadow-lg shadow-[#b87333]/20 active:scale-[0.98]'
+                  : 'bg-gray-400 text-white cursor-not-allowed'
+              }`}
             >
               <Phone className="w-5 h-5" />
               Telefonla Sipariş Ver
@@ -133,7 +153,6 @@ function CartItemCard({ item, index }: { item: CartItem; index: number }) {
   return (
     <div className="bg-white border border-[#e8d5c0] rounded-2xl overflow-hidden">
       <div className="flex gap-3 p-3">
-        {/* Image */}
         <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
           {item.product.image ? (
             <img src={item.product.image} alt={item.product.name} className="w-full h-full object-cover" />
@@ -144,7 +163,6 @@ function CartItemCard({ item, index }: { item: CartItem; index: number }) {
           )}
         </div>
 
-        {/* Info */}
         <div className="flex-1 min-w-0">
           <h3 className="font-semibold text-[#3d2714] text-sm truncate">{item.product.name}</h3>
           {opts.length > 0 && (
@@ -157,7 +175,6 @@ function CartItemCard({ item, index }: { item: CartItem; index: number }) {
           </p>
         </div>
 
-        {/* Delete */}
         <button
           onClick={() => removeFromCart(index)}
           className="w-8 h-8 flex items-center justify-center text-red-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
@@ -166,7 +183,6 @@ function CartItemCard({ item, index }: { item: CartItem; index: number }) {
         </button>
       </div>
 
-      {/* Quantity */}
       <div className="flex items-center justify-end gap-2 px-3 pb-3">
         <div className="flex items-center gap-2 bg-[#f5ebe0] rounded-2xl p-0.5">
           <button
