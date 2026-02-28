@@ -6,6 +6,7 @@ import {
   generateWhatsAppMessage, subscribeCart
 } from '@/store/cartStore';
 import type { CartItem } from '@/types/menu';
+import { getDeliveryFee, subscribeSettings } from '@/store/settingsStore';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -16,7 +17,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cart = useSyncExternalStore(subscribeCart, getCart);
   const total = getCartTotal();
   const count = getCartCount();
-  const deliveryFee = 85;
+  const deliveryFee = useSyncExternalStore(subscribeSettings, getDeliveryFee);
   const grandTotal = total + deliveryFee;
 
   const handleWhatsApp = () => {

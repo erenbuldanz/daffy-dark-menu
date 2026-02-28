@@ -1,4 +1,5 @@
 import type { CartItem, MenuItem } from '@/types/menu';
+import { getDeliveryFee } from '@/store/settingsStore';
 
 const CART_KEY = 'daffy_cart';
 
@@ -115,7 +116,11 @@ export function generateWhatsAppMessage(): string {
   });
 
   const total = getCartTotal();
-  msg += `Toplam: ${total.toLocaleString('tr-TR')} ₺`;
+  const deliveryFee = getDeliveryFee();
+  const grandTotal = total + deliveryFee;
+  msg += `Ara Toplam: ${total.toLocaleString('tr-TR')} ₺\n`;
+  msg += `Teslimat Ücreti: ${deliveryFee.toLocaleString('tr-TR')} ₺\n`;
+  msg += `Genel Toplam: ${grandTotal.toLocaleString('tr-TR')} ₺`;
 
   return msg;
 }
