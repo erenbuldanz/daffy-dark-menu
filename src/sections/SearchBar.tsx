@@ -7,12 +7,13 @@ interface SearchBarProps {
 
 export function SearchBar({ searchQuery, onSearchChange }: SearchBarProps) {
   return (
-    <div className="px-5 py-3">
+    <div id="search-anchor" className="px-5 py-3">
       <div className="relative max-w-lg mx-auto">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <Search className="w-5 h-5 text-[#9a8672]" />
         </div>
         <input
+          id="menu-search-input"
           type="text"
           placeholder="Menüde ara..."
           value={searchQuery}

@@ -28,23 +28,58 @@ const DEFAULT_SETTINGS: Settings = {
 };
 
 const listeners = new Set<() => void>();
-
 let storageListenerBound = false;
+let cachedSettings: Settings | null = null;
 
-function ensureStorageListener() {
-  if (storageListenerBound || typeof window === 'undefined') return;
-  window.addEventListener('storage', (event) => {
-    if (event.key === SETTINGS_KEY) emit();
-  });
-  storageListenerBound = true;
+function normalizePhone(value: string): string {
+  return value.replace(/[^\d+]/g, '');
 }
 
 function emit() {
   listeners.forEach((fn) => fn());
 }
 
-function normalizePhone(value: string): string {
-  return value.replace(/[^\d+]/g, '');
+function normalizeSettings(input: Partial<Settings>): Settings {
+  const next: Settings = {
+    ...DEFAULT_SETTINGS,
+    ...input,
+  };
+
+  next.deliveryFee = Number.isFinite(next.deliveryFee) ? Math.max(0, Math.round(next.deliveryFee)) : DEFAULT_SETTINGS.deliveryFee;
+  next.minOrderAmount = Number.isFinite(next.minOrderAmount) ? Math.max(0, Math.round(next.minOrderAmount)) : DEFAULT_SETTINGS.minOrderAmount;
+  next.isOpen = Boolean(next.isOpen);
+  next.whatsAppNumber = normalizePhone(next.whatsAppNumber || DEFAULT_SETTINGS.whatsAppNumber);
+  next.phoneNumber = normalizePhone(next.phoneNumber || DEFAULT_SETTINGS.phoneNumber);
+  next.restaurantName = (next.restaurantName || '').trim() || DEFAULT_SETTINGS.restaurantName;
+  next.restaurantAddress = (next.restaurantAddress || '').trim() || DEFAULT_SETTINGS.restaurantAddress;
+  next.workingHours = (next.workingHours || '').trim() || DEFAULT_SETTINGS.workingHours;
+  next.instagramUrl = (next.instagramUrl || '').trim();
+  next.orderMessageTemplate = (next.orderMessageTemplate || '').trim() || DEFAULT_SETTINGS.orderMessageTemplate;
+
+  return next;
+}
+
+function readRawSettings(): Settings {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    return normalizeSettings(JSON.parse(raw) as Partial<Settings>);
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
+function ensureStorageListener() {
+  if (storageListenerBound || typeof window === 'undefined') return;
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === SETTINGS_KEY) {
+      cachedSettings = readRawSettings();
+      emit();
+    }
+  });
+
+  storageListenerBound = true;
 }
 
 export function subscribeSettings(fn: () => void) {
@@ -54,45 +89,27 @@ export function subscribeSettings(fn: () => void) {
 }
 
 export function getSettings(): Settings {
-  try {
-    const raw = localStorage.getItem(SETTINGS_KEY);
-    if (!raw) return DEFAULT_SETTINGS;
-    const parsed = JSON.parse(raw) as Partial<Settings>;
-    return {
-      ...DEFAULT_SETTINGS,
-      ...parsed,
-    };
-  } catch {
-    return DEFAULT_SETTINGS;
-  }
+  if (cachedSettings) return cachedSettings;
+  cachedSettings = readRawSettings();
+  return cachedSettings;
 }
 
 export function updateSettings(nextPartial: Partial<Settings>): { ok: boolean; error?: string } {
-  const current = getSettings();
-  const next: Settings = {
-    ...current,
+  const merged = normalizeSettings({
+    ...getSettings(),
     ...nextPartial,
-  };
+  });
 
-  if (!Number.isFinite(next.deliveryFee) || next.deliveryFee < 0) {
+  if (!Number.isFinite(Number(nextPartial.deliveryFee ?? merged.deliveryFee)) || merged.deliveryFee < 0) {
     return { ok: false, error: 'Teslimat ücreti 0 veya daha büyük olmalı.' };
   }
 
-  if (!Number.isFinite(next.minOrderAmount) || next.minOrderAmount < 0) {
+  if (!Number.isFinite(Number(nextPartial.minOrderAmount ?? merged.minOrderAmount)) || merged.minOrderAmount < 0) {
     return { ok: false, error: 'Minimum sipariş tutarı 0 veya daha büyük olmalı.' };
   }
 
-  next.deliveryFee = Math.round(next.deliveryFee);
-  next.minOrderAmount = Math.round(next.minOrderAmount);
-  next.whatsAppNumber = normalizePhone(next.whatsAppNumber);
-  next.phoneNumber = normalizePhone(next.phoneNumber);
-  next.restaurantName = next.restaurantName.trim() || DEFAULT_SETTINGS.restaurantName;
-  next.restaurantAddress = next.restaurantAddress.trim() || DEFAULT_SETTINGS.restaurantAddress;
-  next.workingHours = next.workingHours.trim() || DEFAULT_SETTINGS.workingHours;
-  next.instagramUrl = next.instagramUrl.trim();
-  next.orderMessageTemplate = next.orderMessageTemplate.trim() || DEFAULT_SETTINGS.orderMessageTemplate;
-
-  localStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(merged));
+  cachedSettings = merged;
   emit();
   return { ok: true };
 }

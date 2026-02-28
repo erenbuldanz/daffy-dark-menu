@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react';
+import { Instagram } from 'lucide-react';
 import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
 export function Header() {
@@ -30,9 +31,10 @@ export function Header() {
               href={settings.instagramUrl}
               target="_blank"
               rel="noreferrer"
-              className="text-xs text-[#b87333] font-semibold hover:underline whitespace-nowrap"
+              aria-label="Instagram"
+              className="w-10 h-10 rounded-xl bg-[#b87333]/15 hover:bg-[#b87333]/25 text-[#b87333] flex items-center justify-center transition-colors"
             >
-              Instagram
+              <Instagram className="w-5 h-5" />
             </a>
           )}
         </div>
