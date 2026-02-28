@@ -10,7 +10,7 @@ export function Footer({ onCartOpen }: FooterProps) {
   const cartCount = useSyncExternalStore(subscribeCart, getCartCount);
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md tab-bar-shadow border-t border-[#eadcca]">
+    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-white/96 backdrop-blur-md tab-bar-shadow border-t border-[#e7d3bd] shadow-[0_-10px_24px_rgba(30,15,0,0.06)]">
       <div className="max-w-lg mx-auto px-6 py-2">
         <div className="flex items-center justify-around">
           <button className="flex flex-col items-center gap-0.5 py-2 px-6 text-[#9f632b]">

@@ -89,7 +89,7 @@ function App() {
         )}
         {searchQuery && (
           <>
-            <div className="px-5 py-3"><div className="max-w-lg mx-auto"><p className="text-[#7a5c3e] text-sm">"{searchQuery}" için <span className="font-semibold text-[#3d2714]">{searchResults.length}</span> sonuç bulundu</p></div></div>
+            <div className="px-5 py-3"><div className="max-w-lg mx-auto"><p className="text-[#7b5d40] text-sm">"{searchQuery}" için <span className="font-semibold text-[#2f1b0e]">{searchResults.length}</span> sonuç bulundu</p></div></div>
             <SearchGrid items={searchResults} onProductClick={setSelectedProduct} />
           </>
         )}
