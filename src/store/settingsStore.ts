@@ -8,6 +8,8 @@ export type Settings = {
   phoneNumber: string;
   restaurantName: string;
   restaurantAddress: string;
+  workingHours: string;
+  instagramUrl: string;
   orderMessageTemplate: string;
 };
 
@@ -19,6 +21,8 @@ const DEFAULT_SETTINGS: Settings = {
   phoneNumber: '05548273106',
   restaurantName: 'Daffy Dark',
   restaurantAddress: 'Adres bilgisi eklenmedi',
+  workingHours: 'Her gün 10:00 - 23:00',
+  instagramUrl: '',
   orderMessageTemplate:
     'Merhaba {{restaurantName}}!\n\nSipariş Vermek İstiyorum:\n\n{{items}}\nAra Toplam: {{subtotal}} ₺\nTeslimat Ücreti: {{deliveryFee}} ₺\nGenel Toplam: {{grandTotal}} ₺',
 };
@@ -73,6 +77,8 @@ export function updateSettings(nextPartial: Partial<Settings>): { ok: boolean; e
   next.phoneNumber = normalizePhone(next.phoneNumber);
   next.restaurantName = next.restaurantName.trim() || DEFAULT_SETTINGS.restaurantName;
   next.restaurantAddress = next.restaurantAddress.trim() || DEFAULT_SETTINGS.restaurantAddress;
+  next.workingHours = next.workingHours.trim() || DEFAULT_SETTINGS.workingHours;
+  next.instagramUrl = next.instagramUrl.trim();
   next.orderMessageTemplate = next.orderMessageTemplate.trim() || DEFAULT_SETTINGS.orderMessageTemplate;
 
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(next));

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useSyncExternalStore } from 'react';
 import type { Category, MenuItem, CategoryInfo } from '@/types/menu';
 import { Header } from '@/sections/Header';
 import { Hero } from '@/sections/Hero';
@@ -11,6 +11,7 @@ import { FloatingCartButton } from '@/sections/FloatingOrderButton';
 import { FeaturedProducts } from '@/sections/FeaturedProducts';
 import { CartDrawer } from '@/sections/CartDrawer';
 import { fetchMenuData } from '@/lib/api';
+import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
 function App() {
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
@@ -19,6 +20,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
+  const settings = useSyncExternalStore(subscribeSettings, getSettings);
 
   useEffect(() => {
     fetchMenuData().then((data) => {
@@ -65,6 +67,11 @@ function App() {
   return (
     <div className="min-h-screen bg-[#faf6f0] text-[#1e0f00]">
       <Header />
+      {!settings.isOpen && (
+        <div className="bg-amber-100 border-b border-amber-200 text-amber-900">
+          <div className="max-w-lg mx-auto px-5 py-2 text-sm font-medium">Şu an sipariş almıyoruz.</div>
+        </div>
+      )}
       <main className="pb-28">
         <Hero />
         <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />

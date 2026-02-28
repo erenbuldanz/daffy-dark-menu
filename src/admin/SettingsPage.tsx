@@ -13,6 +13,8 @@ export function SettingsPage() {
   const [phoneNumber, setPhoneNumber] = useState(current.phoneNumber);
   const [restaurantName, setRestaurantName] = useState(current.restaurantName);
   const [restaurantAddress, setRestaurantAddress] = useState(current.restaurantAddress);
+  const [workingHours, setWorkingHours] = useState(current.workingHours);
+  const [instagramUrl, setInstagramUrl] = useState(current.instagramUrl);
   const [orderMessageTemplate, setOrderMessageTemplate] = useState(current.orderMessageTemplate);
 
   const [settingsError, setSettingsError] = useState('');
@@ -37,6 +39,8 @@ export function SettingsPage() {
       phoneNumber,
       restaurantName,
       restaurantAddress,
+      workingHours,
+      instagramUrl,
       orderMessageTemplate,
     });
 
@@ -127,6 +131,17 @@ export function SettingsPage() {
           <div>
             <label className="block text-sm text-[#d4c4a8] mb-1.5">Restoran Adresi</label>
             <input value={restaurantAddress} onChange={(e) => setRestaurantAddress(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" required />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm text-[#d4c4a8] mb-1.5">Çalışma Saatleri</label>
+              <input value={workingHours} onChange={(e) => setWorkingHours(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="Her gün 10:00 - 23:00" />
+            </div>
+            <div>
+              <label className="block text-sm text-[#d4c4a8] mb-1.5">Instagram Linki</label>
+              <input value={instagramUrl} onChange={(e) => setInstagramUrl(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://instagram.com/..." />
+            </div>
           </div>
 
           <div>
