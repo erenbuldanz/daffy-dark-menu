@@ -11,6 +11,7 @@ export type Settings = {
   workingHours: string;
   instagramUrl: string;
   logoUrl: string;
+  unsplashUrl: string;
   orderMessageTemplate: string;
 };
 
@@ -25,6 +26,7 @@ const DEFAULT_SETTINGS: Settings = {
   workingHours: 'Her gün 10:00 - 23:00',
   instagramUrl: '',
   logoUrl: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=100&h=100&fit=crop',
+  unsplashUrl: '',
   orderMessageTemplate:
     'Merhaba {{restaurantName}}!\n\nSipariş Vermek İstiyorum:\n\n{{items}}\nAra Toplam: {{subtotal}} ₺\nTeslimat Ücreti: {{deliveryFee}} ₺\nGenel Toplam: {{grandTotal}} ₺',
 };
@@ -57,6 +59,7 @@ function normalizeSettings(input: Partial<Settings>): Settings {
   next.workingHours = (next.workingHours || '').trim() || DEFAULT_SETTINGS.workingHours;
   next.instagramUrl = (next.instagramUrl || '').trim();
   next.logoUrl = (next.logoUrl || '').trim() || DEFAULT_SETTINGS.logoUrl;
+  next.unsplashUrl = (next.unsplashUrl || '').trim();
   next.orderMessageTemplate = (next.orderMessageTemplate || '').trim() || DEFAULT_SETTINGS.orderMessageTemplate;
 
   return next;

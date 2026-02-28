@@ -17,6 +17,7 @@ export function SettingsPage() {
   const [workingHours, setWorkingHours] = useState(current.workingHours);
   const [instagramUrl, setInstagramUrl] = useState(current.instagramUrl);
   const [logoUrl, setLogoUrl] = useState(current.logoUrl);
+  const [unsplashUrl, setUnsplashUrl] = useState(current.unsplashUrl);
   const [orderMessageTemplate, setOrderMessageTemplate] = useState(current.orderMessageTemplate);
 
   const [settingsError, setSettingsError] = useState('');
@@ -44,6 +45,7 @@ export function SettingsPage() {
       workingHours,
       instagramUrl,
       logoUrl,
+      unsplashUrl,
       orderMessageTemplate,
     });
 
@@ -168,6 +170,16 @@ export function SettingsPage() {
           <div>
             <label className="block text-sm text-[#d4c4a8] mb-1.5">Logo URL</label>
             <input value={logoUrl} onChange={(e) => setLogoUrl(e.target.value)} className="w-full bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://.../logo.jpg" />
+          </div>
+
+          <div>
+            <label className="block text-sm text-[#d4c4a8] mb-1.5">Unsplash Profil Linki</label>
+            <div className="flex gap-2">
+              <input value={unsplashUrl} onChange={(e) => setUnsplashUrl(e.target.value)} className="flex-1 bg-[#4a3328]/80 border border-[#8b6f47]/30 rounded-xl py-3 px-4 text-[#f5e6d3]" placeholder="https://unsplash.com/@kullaniciadi" />
+              {unsplashUrl && (
+                <a href={unsplashUrl} target="_blank" rel="noreferrer" className="px-4 py-3 rounded-xl bg-[#b87333] text-white text-sm font-medium whitespace-nowrap">Aç</a>
+              )}
+            </div>
           </div>
 
           <div>
