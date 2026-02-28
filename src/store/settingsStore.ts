@@ -29,6 +29,16 @@ const DEFAULT_SETTINGS: Settings = {
 
 const listeners = new Set<() => void>();
 
+let storageListenerBound = false;
+
+function ensureStorageListener() {
+  if (storageListenerBound || typeof window === 'undefined') return;
+  window.addEventListener('storage', (event) => {
+    if (event.key === SETTINGS_KEY) emit();
+  });
+  storageListenerBound = true;
+}
+
 function emit() {
   listeners.forEach((fn) => fn());
 }
@@ -38,6 +48,7 @@ function normalizePhone(value: string): string {
 }
 
 export function subscribeSettings(fn: () => void) {
+  ensureStorageListener();
   listeners.add(fn);
   return () => listeners.delete(fn);
 }

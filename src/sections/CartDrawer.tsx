@@ -25,9 +25,17 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const canOrder = settings.isOpen && meetsMinOrder;
 
   const handleWhatsApp = () => {
-    if (!canOrder) return;
+    const latest = getSettings();
+    const latestSubtotal = getCartTotal();
+    const latestCanOrder = latest.isOpen && latestSubtotal >= latest.minOrderAmount;
+
+    if (!latestCanOrder) {
+      alert(!latest.isOpen ? 'Şu anda sipariş alımı kapalı.' : `Minimum sipariş tutarı ${latest.minOrderAmount.toLocaleString('tr-TR')} ₺`);
+      return;
+    }
+
     const msg = generateWhatsAppMessage();
-    const number = settings.whatsAppNumber.replace(/\D/g, '');
+    const number = latest.whatsAppNumber.replace(/\D/g, '');
     window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -128,7 +136,13 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <a
               href={canOrder ? `tel:${settings.phoneNumber}` : undefined}
               onClick={(e) => {
-                if (!canOrder) e.preventDefault();
+                const latest = getSettings();
+                const latestSubtotal = getCartTotal();
+                const latestCanOrder = latest.isOpen && latestSubtotal >= latest.minOrderAmount;
+                if (!latestCanOrder) {
+                  e.preventDefault();
+                  alert(!latest.isOpen ? 'Şu anda sipariş alımı kapalı.' : `Minimum sipariş tutarı ${latest.minOrderAmount.toLocaleString('tr-TR')} ₺`);
+                }
               }}
               className={`w-full py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300 ${
                 canOrder
