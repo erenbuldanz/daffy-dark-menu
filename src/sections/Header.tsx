@@ -9,23 +9,11 @@ export function Header() {
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    let lastY = window.scrollY;
-
     const onScroll = () => {
-      const currentY = window.scrollY;
-      const scrollingDown = currentY > lastY;
-
-      if (currentY <= 16) {
-        setIsHidden(false);
-      } else if (scrollingDown && currentY > 72) {
-        setIsHidden(true);
-      } else if (!scrollingDown) {
-        setIsHidden(false);
-      }
-
-      lastY = currentY;
+      setIsHidden(window.scrollY > 8);
     };
 
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
