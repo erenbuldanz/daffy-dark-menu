@@ -102,3 +102,7 @@ Bu sürüm lokal geliştirme odaklıdır. Canlıya çıkmadan önce:
 - Rate limit / logging
 - Düzenli yedekleme
 adımları önerilir.
+
+
+## Dağıtım Rehberi
+Adım adım canlıya alma ve kontrol listesi için: `DEPLOY_RUNBOOK.md`
