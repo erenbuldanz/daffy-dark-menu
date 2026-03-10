@@ -1,54 +1,39 @@
-const AUTH_KEY = 'daffy_admin_auth';
-const ADMIN_PASSWORD_KEY = 'daffy_admin_password';
-const DEFAULT_ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || 'daffy2025';
+import { adminLoginApi, changeAdminPasswordApi } from '@/lib/api';
+import { clearAuthSession, getValidAuthToken, writeAuthSession } from './authSession';
 
-function getCurrentAdminPassword(): string {
-  const customPassword = localStorage.getItem(ADMIN_PASSWORD_KEY);
-  return customPassword || DEFAULT_ADMIN_PASSWORD;
+export function getAuthToken(): string | null {
+  return getValidAuthToken();
 }
 
 export function isAuthenticated(): boolean {
+  return !!getValidAuthToken();
+}
+
+export async function login(password: string): Promise<boolean> {
   try {
-    const session = localStorage.getItem(AUTH_KEY);
-    if (!session) return false;
-    const { expiry } = JSON.parse(session);
-    if (Date.now() > expiry) {
-      localStorage.removeItem(AUTH_KEY);
-      return false;
-    }
+    const data = await adminLoginApi(password);
+    writeAuthSession({ token: data.token, expiry: data.expiry });
     return true;
   } catch {
     return false;
   }
 }
 
-export function login(password: string): boolean {
-  if (password === getCurrentAdminPassword()) {
-    const session = {
-      authenticated: true,
-      expiry: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
-    };
-    localStorage.setItem(AUTH_KEY, JSON.stringify(session));
-    return true;
-  }
-  return false;
-}
-
-export function updateAdminPassword(currentPassword: string, newPassword: string): { ok: boolean; error?: string } {
+export async function updateAdminPassword(currentPassword: string, newPassword: string): Promise<{ ok: boolean; error?: string }> {
   const normalizedNew = newPassword.trim();
-
-  if (currentPassword !== getCurrentAdminPassword()) {
-    return { ok: false, error: 'Mevcut şifre yanlış.' };
-  }
 
   if (normalizedNew.length < 6) {
     return { ok: false, error: 'Yeni şifre en az 6 karakter olmalı.' };
   }
 
-  localStorage.setItem(ADMIN_PASSWORD_KEY, normalizedNew);
-  return { ok: true };
+  try {
+    await changeAdminPasswordApi(currentPassword, normalizedNew);
+    return { ok: true };
+  } catch (error) {
+    return { ok: false, error: (error as Error).message || 'Şifre güncellenemedi.' };
+  }
 }
 
 export function logout() {
-  localStorage.removeItem(AUTH_KEY);
+  clearAuthSession();
 }

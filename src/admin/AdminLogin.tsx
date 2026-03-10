@@ -7,11 +7,16 @@ export function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(password)) {
+    setLoading(true);
+    const ok = await login(password);
+    setLoading(false);
+
+    if (ok) {
       navigate('/admin');
     } else {
       setError('Yanlış şifre!');
@@ -66,9 +71,10 @@ export function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-[#ea580c] hover:to-[#c2410c] text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-amber-500/20"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-[#ea580c] hover:to-[#c2410c] disabled:opacity-60 disabled:cursor-not-allowed text-white py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-amber-500/20"
           >
-            Giriş Yap
+            {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
           </button>
 
           <a

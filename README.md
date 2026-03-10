@@ -60,12 +60,21 @@ npm run build
 npm run lint
 ```
 
+
+## Admin güvenliği
+- Admin giriş doğrulaması artık **API tarafında** yapılır (`/api/admin/login`).
+- Menü ve kategori güncelleme uçları (`PUT /api/categories`, `PUT /api/menu-items`) **Bearer token** ister.
+- Varsayılan şifre `.env` içindeki `ADMIN_PASSWORD` ile belirlenir (ilk kurulum/fallback).
+- Şifre değişimi `POST /api/admin/change-password` ile yapılır ve hash olarak `server/db.json` içinde saklanır.
+
 ## API uçları
 - `GET /api/health`
 - `GET /api/menu`
 - `POST /api/bootstrap`
-- `PUT /api/categories`
-- `PUT /api/menu-items`
+- `POST /api/admin/login`
+- `POST /api/admin/change-password`
+- `PUT /api/categories` (auth gerekli)
+- `PUT /api/menu-items` (auth gerekli)
 
 ## Yedekleme / Export
 Menü verisinin (`server/db.json`) zaman damgalı bir yedeğini alır:
@@ -81,16 +90,15 @@ Yedek dosyaları `backups/` klasörüne oluşturulur.
 
 ```bash
 VITE_API_URL=http://localhost:4000/api
-VITE_ADMIN_PASSWORD=change_me
 PORT=4000
+ADMIN_PASSWORD=change_me
 ```
 
-> Not: Frontend tarafındaki `VITE_*` değişkenleri client bundle içine girer; gerçek gizli anahtarları burada tutmayın.
+> Not: Sadece `VITE_*` değişkenleri client bundle içine girer. Admin şifresi için `ADMIN_PASSWORD` kullanın.
 
 ## Not
 Bu sürüm lokal geliştirme odaklıdır. Canlıya çıkmadan önce:
 - JSON yerine veritabanı
-- Auth hardening
 - Rate limit / logging
 - Düzenli yedekleme
 adımları önerilir.

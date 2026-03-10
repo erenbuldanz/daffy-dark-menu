@@ -57,7 +57,7 @@ export function SettingsPage() {
     setSettingsSuccess('Ayarlar başarıyla güncellendi.');
   };
 
-  const handlePasswordSubmit = (e: React.FormEvent) => {
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setPasswordError('');
     setPasswordSuccess('');
@@ -67,7 +67,7 @@ export function SettingsPage() {
       return;
     }
 
-    const result = updateAdminPassword(currentPassword, newPassword);
+    const result = await updateAdminPassword(currentPassword, newPassword);
     if (!result.ok) {
       setPasswordError(result.error || 'Şifre güncellenemedi.');
       return;

@@ -1,5 +1,6 @@
 import type { CategoryInfo, MenuItem } from '@/types/menu';
 import { categories as defaultCategories, menuItems as defaultMenuItems } from '@/data/menu';
+import { clearAuthSession, getValidAuthToken } from '@/store/authSession';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
@@ -8,12 +9,50 @@ export interface MenuPayload {
   menuItems: MenuItem[];
 }
 
+interface AdminLoginResponse {
+  token: string;
+  expiry: number;
+}
+
+class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const authToken = getValidAuthToken();
   const res = await fetch(`${API_BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json', ...(init?.headers || {}) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+      ...(init?.headers || {}),
+    },
     ...init,
   });
-  if (!res.ok) throw new Error(`API ${res.status}`);
+
+  if (!res.ok) {
+    let message = `API ${res.status}`;
+    try {
+      const data = await res.json();
+      if (typeof data?.error === 'string' && data.error.trim()) {
+        message = data.error;
+      }
+    } catch {
+      // no-op
+    }
+
+    if (res.status === 401) {
+      clearAuthSession();
+    }
+
+    throw new ApiError(message, res.status);
+  }
+
   return res.json() as Promise<T>;
 }
 
@@ -35,6 +74,20 @@ export async function fetchMenuData(): Promise<MenuPayload> {
   } catch {
     return { categories: defaultCategories, menuItems: defaultMenuItems };
   }
+}
+
+export async function adminLoginApi(password: string): Promise<AdminLoginResponse> {
+  return request<AdminLoginResponse>('/admin/login', {
+    method: 'POST',
+    body: JSON.stringify({ password }),
+  });
+}
+
+export async function changeAdminPasswordApi(currentPassword: string, newPassword: string) {
+  return request<{ ok: boolean }>('/admin/change-password', {
+    method: 'POST',
+    body: JSON.stringify({ currentPassword, newPassword }),
+  });
 }
 
 export async function saveCategoriesApi(categories: CategoryInfo[]) {
