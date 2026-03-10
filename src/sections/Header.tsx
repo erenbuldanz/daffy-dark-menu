@@ -6,15 +6,26 @@ const DEFAULT_LOGO = 'https://images.unsplash.com/photo-1511920170033-f8396924c3
 
 export function Header() {
   const settings = useSyncExternalStore(subscribeSettings, getSettings);
-
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
+    let lastY = window.scrollY;
+
     const onScroll = () => {
-      setIsHidden(window.scrollY > 24);
+      const currentY = window.scrollY;
+      const scrollingDown = currentY > lastY;
+
+      if (currentY <= 16) {
+        setIsHidden(false);
+      } else if (scrollingDown && currentY > 72) {
+        setIsHidden(true);
+      } else if (!scrollingDown) {
+        setIsHidden(false);
+      }
+
+      lastY = currentY;
     };
 
-    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
