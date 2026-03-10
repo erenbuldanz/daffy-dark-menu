@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { Instagram } from 'lucide-react';
 import { getSettings, subscribeSettings } from '@/store/settingsStore';
 
@@ -7,8 +7,20 @@ const DEFAULT_LOGO = 'https://images.unsplash.com/photo-1511920170033-f8396924c3
 export function Header() {
   const settings = useSyncExternalStore(subscribeSettings, getSettings);
 
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsHidden(window.scrollY > 24);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 glass-warm border-b border-[#e8d5c0]/70">
+    <header className={`sticky top-0 z-50 glass-warm border-b border-[#e8d5c0]/70 transition-transform duration-300 ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <div className="max-w-lg mx-auto px-5 py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">

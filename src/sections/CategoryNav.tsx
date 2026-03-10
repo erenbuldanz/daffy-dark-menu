@@ -26,7 +26,7 @@ export function CategoryNav({ categories, activeCategory, onCategoryChange }: Ca
   };
 
   return (
-    <div className="sticky top-[72px] z-30 bg-[#fdf9f3]/90 backdrop-blur-md border-b border-[#eadcca]">
+    <div className="sticky top-0 z-30 bg-[#fdf9f3]/90 backdrop-blur-md border-b border-[#eadcca]">
       <div className="px-5 pt-2 pb-2">
         <div className="max-w-lg mx-auto">
           <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-hide">

@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect, useCallback, useSyncExternalStore } from 'react';
 import type { Category, MenuItem, CategoryInfo } from '@/types/menu';
 import { Header } from '@/sections/Header';
-import { Hero } from '@/sections/Hero';
 import { CategoryNav } from '@/sections/CategoryNav';
 import { MenuGrid, SearchGrid } from '@/sections/MenuGrid';
 import { ProductModal } from '@/sections/ProductModal';
@@ -78,7 +77,6 @@ function App() {
         </div>
       )}
       <main className="pb-28">
-        <Hero />
         <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
         {!searchQuery && (
           <>
