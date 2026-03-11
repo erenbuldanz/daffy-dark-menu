@@ -28,7 +28,7 @@
       "description": "Antep fıstığı ile zenginleştirilmiş özel Sebastian tatlısı",
       "price": 360,
       "category": "tatli",
-      "image": "/menu-images/antep-fistikli-sebastian.png"
+      "image": "menu-images/antep-fistikli-sebastian.png"
     },
     {
       "id": "2",
@@ -36,7 +36,7 @@
       "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
       "price": 290,
       "category": "tatli",
-      "image": "/menu-images/kavanozda-belcika-cikolatasi.png",
+      "image": "menu-images/kavanozda-belcika-cikolatasi.png",
       "options": [
         {
           "name": "Meyve Tercihi",
@@ -63,7 +63,7 @@
       "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
       "price": 320,
       "category": "tatli",
-      "image": "/menu-images/kavanozda-belcika-cikolatasi.png",
+      "image": "menu-images/kavanozda-belcika-cikolatasi.png",
       "options": [
         {
           "name": "Meyve Tercihi",
@@ -90,7 +90,7 @@
       "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
       "price": 350,
       "category": "tatli",
-      "image": "/menu-images/kavanozda-belcika-cikolatasi.png",
+      "image": "menu-images/kavanozda-belcika-cikolatasi.png",
       "options": [
         {
           "name": "Meyve Tercihi",
@@ -117,7 +117,7 @@
       "description": "Özel waffle hamurunda servis edilen enfes tatlı",
       "price": 440,
       "category": "tatli",
-      "image": "/menu-images/waffle-cup.png"
+      "image": "menu-images/waffle-cup.png"
     },
     {
       "id": "6",
@@ -125,7 +125,7 @@
       "description": "Çilek, muz, krep kırığı, özel krema, Belçika çikolatası",
       "price": 320,
       "category": "tatli",
-      "image": "/menu-images/bunny.png"
+      "image": "menu-images/bunny.png"
     },
     {
       "id": "7",
@@ -133,7 +133,7 @@
       "description": "Çilek, muz, krep kırığı, Belçika çikolatası",
       "price": 320,
       "category": "tatli",
-      "image": "/menu-images/daffy-cup.png"
+      "image": "menu-images/daffy-cup.png"
     },
     {
       "id": "8",
@@ -141,7 +141,7 @@
       "description": "Belçika çikolatası ile hazırlanan klasik San Sebastian",
       "price": 320,
       "category": "tatli",
-      "image": "/menu-images/san-sebastian.png"
+      "image": "menu-images/san-sebastian.png"
     },
     {
       "id": "9",
@@ -149,7 +149,7 @@
       "description": "Krep kırığı, Belçika çikolatası",
       "price": 310,
       "category": "tatli",
-      "image": "/menu-images/brownie.png"
+      "image": "menu-images/brownie.png"
     },
     {
       "id": "10",
@@ -157,7 +157,7 @@
       "description": "Çilek, muz, özel krema, krep kırığı, Belçika çikolatası",
       "price": 320,
       "category": "tatli",
-      "image": "/menu-images/kruvasan.png"
+      "image": "menu-images/kruvasan.png"
     },
     {
       "id": "11",
@@ -165,7 +165,7 @@
       "description": "Özel Daffy Dark tarifi",
       "price": 310,
       "category": "tatli",
-      "image": "/menu-images/daffytrol.png"
+      "image": "menu-images/daffytrol.png"
     },
     {
       "id": "12",
@@ -173,7 +173,7 @@
       "description": "Özel Pera tatlısı",
       "price": 310,
       "category": "tatli",
-      "image": "/menu-images/pera.png"
+      "image": "menu-images/pera.png"
     },
     {
       "id": "13",
@@ -181,7 +181,7 @@
       "description": "Özel Marsel tatlısı",
       "price": 310,
       "category": "tatli",
-      "image": "/menu-images/marsel.png"
+      "image": "menu-images/marsel.png"
     },
     {
       "id": "14",
@@ -189,7 +189,7 @@
       "description": "Taze yaban mersini ile hazırlanan pasta",
       "price": 275,
       "category": "tatli",
-      "image": "/menu-images/yaban-mersinli-pasta.png"
+      "image": "menu-images/yaban-mersinli-pasta.png"
     },
     {
       "id": "15",
@@ -197,7 +197,7 @@
       "description": "Daffy Dark özel waffle",
       "price": 330,
       "category": "tatli",
-      "image": "/menu-images/waffle-daffle.png"
+      "image": "menu-images/waffle-daffle.png"
     },
     {
       "id": "16",
@@ -205,7 +205,7 @@
       "description": "Taze böğürtlen veya frambuaz",
       "price": 90,
       "category": "tatli",
-      "image": "/menu-images/frambuazbogurtlen.avif"
+      "image": "menu-images/frambuazbogurtlen.avif"
     },
     {
       "id": "17",
@@ -213,7 +213,7 @@
       "description": "Kaşık tatlısı",
       "price": 310,
       "category": "tatli",
-      "image": "/menu-images/spoonful.png"
+      "image": "menu-images/spoonful.png"
     },
     {
       "id": "18",
@@ -221,7 +221,7 @@
       "description": "Ev yapımı dondurma",
       "price": 90,
       "category": "tatli",
-      "image": "/menu-images/dondurma.jpg"
+      "image": "menu-images/dondurma.jpg"
     },
     {
       "id": "19",
@@ -229,7 +229,7 @@
       "description": "Lotus bisküvisi ile hazırlanan pasta",
       "price": 270,
       "category": "tatli",
-      "image": "/menu-images/cikolatali-pasta.png"
+      "image": "menu-images/cikolatali-pasta.png"
     },
     {
       "id": "20",
@@ -237,7 +237,7 @@
       "description": "Doğal kaynak suyu",
       "price": 35,
       "category": "icecek",
-      "image": "/menu-images/su.jpeg"
+      "image": "menu-images/su.jpeg"
     },
     {
       "id": "21",
@@ -245,7 +245,7 @@
       "description": "Ferahlatıcı soda",
       "price": 55,
       "category": "icecek",
-      "image": "/menu-images/sadesoda.jpg"
+      "image": "menu-images/sadesoda.jpg"
     },
     {
       "id": "22",
@@ -253,7 +253,7 @@
       "description": "Meyve aromalı soda",
       "price": 70,
       "category": "icecek",
-      "image": "/menu-images/meyvelisoda.webp"
+      "image": "menu-images/meyvelisoda.webp"
     },
     {
       "id": "23",
@@ -261,7 +261,7 @@
       "description": "Taze limonlardan hazırlanan ev yapımı limonata",
       "price": 200,
       "category": "icecek",
-      "image": "/menu-images/evyapimilimonata.webp"
+      "image": "menu-images/evyapimilimonata.webp"
     },
     {
       "id": "24",
@@ -269,7 +269,7 @@
       "description": "Link meşrubat",
       "price": 45,
       "category": "icecek",
-      "image": "/menu-images/link.webp"
+      "image": "menu-images/link.webp"
     },
     {
       "id": "25",
@@ -277,7 +277,7 @@
       "description": "Capri Sun meyve suyu",
       "price": 55,
       "category": "icecek",
-      "image": "/menu-images/caprisun.jpg"
+      "image": "menu-images/caprisun.jpg"
     },
     {
       "id": "26",
@@ -285,7 +285,7 @@
       "description": "Coca Cola",
       "price": 85,
       "category": "icecek",
-      "image": "/menu-images/cola-kutu.jpg"
+      "image": "menu-images/cola-kutu.jpg"
     },
     {
       "id": "27",
@@ -293,7 +293,7 @@
       "description": "Belçika çikolatası ile hazırlanan sıcak çikolata",
       "price": 170,
       "category": "icecek",
-      "image": "/menu-images/sicakcikolata.webp"
+      "image": "menu-images/sicakcikolata.webp"
     },
     {
       "id": "28",
@@ -301,7 +301,7 @@
       "description": "Geleneksel Türk çayı",
       "price": 50,
       "category": "icecek",
-      "image": "/menu-images/fincancay.jpg"
+      "image": "menu-images/fincancay.jpg"
     },
     {
       "id": "29",
@@ -309,7 +309,7 @@
       "description": "Taze çekilmiş filtre kahve",
       "price": 135,
       "category": "kahve",
-      "image": "/menu-images/filtre-kahve.jpg"
+      "image": "menu-images/filtre-kahve.jpg"
     },
     {
       "id": "30",
@@ -317,7 +317,7 @@
       "description": "Geleneksel Türk kahvesi",
       "price": 100,
       "category": "kahve",
-      "image": "/menu-images/turkkahvesi.jpg"
+      "image": "menu-images/turkkahvesi.jpg"
     },
     {
       "id": "31",
@@ -325,7 +325,7 @@
       "description": "Espresso ve sıcak su",
       "price": 140,
       "category": "kahve",
-      "image": "/menu-images/americano.jpg"
+      "image": "menu-images/americano.jpg"
     },
     {
       "id": "32",
@@ -333,7 +333,7 @@
       "description": "Baharatlı çay ve süt",
       "price": 140,
       "category": "kahve",
-      "image": "/menu-images/chaitealatte.jpg"
+      "image": "menu-images/chaitealatte.jpg"
     },
     {
       "id": "33",
@@ -341,7 +341,7 @@
       "description": "Çift shot espresso",
       "price": 125,
       "category": "kahve",
-      "image": "/menu-images/espresso.jpeg"
+      "image": "menu-images/espresso.jpeg"
     },
     {
       "id": "34",
@@ -349,7 +349,7 @@
       "description": "Espresso ve buharla ısıtılmış süt",
       "price": 140,
       "category": "kahve",
-      "image": "/menu-images/latte.jpeg"
+      "image": "menu-images/latte.jpeg"
     },
     {
       "id": "35",
@@ -357,7 +357,7 @@
       "description": "Espresso, buharla ısıtılmış süt ve köpük",
       "price": 140,
       "category": "kahve",
-      "image": "/menu-images/cappuccino.jpg"
+      "image": "menu-images/cappuccino.jpg"
     },
     {
       "id": "36",
@@ -365,7 +365,7 @@
       "description": "Espresso ve mikro köpüklü süt",
       "price": 150,
       "category": "kahve",
-      "image": "/menu-images/flatwhite.jpeg"
+      "image": "menu-images/flatwhite.jpeg"
     },
     {
       "id": "37",
@@ -373,7 +373,7 @@
       "description": "Espresso, süt ve karamel şurubu",
       "price": 150,
       "category": "kahve",
-      "image": "/menu-images/caramellatte.jpg"
+      "image": "menu-images/caramellatte.jpg"
     },
     {
       "id": "38",
@@ -381,7 +381,7 @@
       "description": "Espresso, çikolata ve süt",
       "price": 150,
       "category": "kahve",
-      "image": "/menu-images/mocha.jpg"
+      "image": "menu-images/mocha.jpg"
     },
     {
       "id": "39",
@@ -389,7 +389,7 @@
       "description": "Espresso, beyaz çikolata ve süt",
       "price": 150,
       "category": "kahve",
-      "image": "/menu-images/whitemocha.jpg"
+      "image": "menu-images/whitemocha.jpg"
     },
     {
       "id": "40",
@@ -397,7 +397,7 @@
       "description": "Tek shot espresso",
       "price": 100,
       "category": "kahve",
-      "image": "/menu-images/espresso.jpeg"
+      "image": "menu-images/espresso.jpeg"
     },
     {
       "id": "41",
@@ -405,7 +405,7 @@
       "description": "Çift kişilik Türk kahvesi",
       "price": 180,
       "category": "kahve",
-      "image": "/menu-images/turkkahvesi.jpg"
+      "image": "menu-images/turkkahvesi.jpg"
     },
     {
       "id": "42",
@@ -413,7 +413,7 @@
       "description": "Espresso ve soğuk su",
       "price": 140,
       "category": "soguk-kahve",
-      "image": "/menu-images/ice-americano.jpeg"
+      "image": "menu-images/ice-americano.jpeg"
     },
     {
       "id": "43",
@@ -421,7 +421,7 @@
       "description": "Espresso ve soğuk süt",
       "price": 150,
       "category": "soguk-kahve",
-      "image": "/menu-images/ice-latte.png"
+      "image": "menu-images/ice-latte.png"
     },
     {
       "id": "44",
@@ -429,7 +429,7 @@
       "description": "Espresso, soğuk süt ve karamel",
       "price": 160,
       "category": "soguk-kahve",
-      "image": "/menu-images/icecaramellatte.png"
+      "image": "menu-images/icecaramellatte.png"
     },
     {
       "id": "45",
@@ -437,7 +437,7 @@
       "description": "Espresso, çikolata ve soğuk süt",
       "price": 160,
       "category": "soguk-kahve",
-      "image": "/menu-images/sogukmocha.png"
+      "image": "menu-images/sogukmocha.png"
     },
     {
       "id": "46",
@@ -445,7 +445,7 @@
       "description": "Espresso, beyaz çikolata ve soğuk süt",
       "price": 160,
       "category": "soguk-kahve",
-      "image": "/menu-images/ice-white-chocolate-mocha.png"
+      "image": "menu-images/ice-white-chocolate-mocha.png"
     },
     {
       "id": "47",
@@ -453,7 +453,7 @@
       "description": "Soğuk demleme kahve",
       "price": 170,
       "category": "soguk-kahve",
-      "image": "/menu-images/coldbrew.jpeg"
+      "image": "menu-images/coldbrew.jpeg"
     },
     {
       "id": "48",
@@ -461,7 +461,7 @@
       "description": "Buzlu ve köpüklü kahve",
       "price": 150,
       "category": "soguk-kahve",
-      "image": "/menu-images/frappe.jpeg"
+      "image": "menu-images/frappe.jpeg"
     },
     {
       "id": "49",
@@ -469,7 +469,7 @@
       "description": "Soğuk chai tea ve süt",
       "price": 150,
       "category": "soguk-kahve",
-      "image": "/menu-images/ice-chai-tea-latte.jpg"
+      "image": "menu-images/ice-chai-tea-latte.jpg"
     }
   ],
   "meta": {
