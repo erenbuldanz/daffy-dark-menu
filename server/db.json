@@ -429,7 +429,7 @@
       "description": "Espresso, soğuk süt ve karamel",
       "price": 160,
       "category": "soguk-kahve",
-      "image": "/menu-images/icecaramellatte.webp"
+      "image": "/menu-images/icecaramellatte.png"
     },
     {
       "id": "45",
@@ -437,7 +437,7 @@
       "description": "Espresso, çikolata ve soğuk süt",
       "price": 160,
       "category": "soguk-kahve",
-      "image": "/menu-images/sogukmocha.webp"
+      "image": "/menu-images/sogukmocha.png"
     },
     {
       "id": "46",
